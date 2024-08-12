@@ -1,0 +1,19 @@
+.titulo{
+    color: purple;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.img{
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 150px;
+    height: 150px;
+}
+
+body{
+background-image: url("https://img.freepik.com/vetores-gratis/papel-de-parede-tecnologico-futurista_79603-1093.jpg");
+background-size: cover;
+}
