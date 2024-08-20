@@ -1,19 +1,19 @@
 import { createContext, ReactNode, useState } from "react"
 
 import UsuarioLogin from "../Models/UsuarioLogin"
-import { cadastrarUsuario } from "../services/Services"
-import { login } from "../services/Services";
+import { login } from "../services/Services"
+import { toastAlerta } from "../util/toastAlerta"
 // import { toastAlerta } from "../utils/toastAlerta"
 
 interface AuthContextProps {
-    usuario: UsuarioLogin;
-    handleLogout(): void;
-    handleLogin(usuario: UsuarioLogin): Promise<void>;
-    isLoading: boolean;
+    usuario: UsuarioLogin
+    handleLogout(): void
+    handleLogin(usuario: UsuarioLogin): Promise<void>
+    isLoading: boolean
 }
 
 interface AuthProviderProps {
-    children: ReactNode;
+    children: ReactNode
 }
 
 export const AuthContext = createContext({} as AuthContextProps)
@@ -27,7 +27,7 @@ export function AuthProvider({ children }: AuthProviderProps) {
         senha: "",
         foto: "",
         token: ""
-    });
+    })
 
     const [isLoading, setIsLoading] = useState(false)
 
@@ -35,12 +35,12 @@ export function AuthProvider({ children }: AuthProviderProps) {
         setIsLoading(true)
         try {
             await login(`/usuarios/logar`, userLogin, setUsuario)
-            alert("Usuário logado com sucesso")
+            toastAlerta('Você precisa estar logado', 'info');
             setIsLoading(false)
 
         } catch (error) {
             console.log(error)
-            alert("Dados do usuário inconsistentes")
+            toastAlerta('Você precisa estar logado', 'info');
             setIsLoading(false)
         }
     }
